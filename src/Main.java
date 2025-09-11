@@ -2,32 +2,31 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         ArvoreBinaria arvore = new ArvoreBinaria();
-        Random random = new Random();
 
-        System.out.println("Inserindo valores:");
+        int[] valores = {50, 30, 70, 20, 40, 60, 80};
+        for (int v : valores) arvore.inserir(v);
 
-        // gerar e inserir 5 números aleatórios de 1 a 100
-        for (int i = 0; i < 5; i++) {
-            int valor = random.nextInt(100) + 1;
-            System.out.print(valor + " ");
-            arvore.inserir(valor);
-        }
-
-        System.out.println("\n");
-
-        System.out.print("Em ordem: ");
+        System.out.print("Em ordem inicial: ");
         arvore.inOrdem(arvore.raiz);
         System.out.println();
 
-        System.out.print("Pré-ordem: ");
-        arvore.preOrdem(arvore.raiz);
+        arvore.removerMenor(); // remove 20
+        System.out.print("Após remover menor: ");
+        arvore.inOrdem(arvore.raiz);
         System.out.println();
 
-        System.out.print("Pós-ordem: ");
-        arvore.posOrdem(arvore.raiz);
+        arvore.removerMaior(); // remove 80
+        System.out.print("Após remover maior: ");
+        arvore.inOrdem(arvore.raiz);
+        System.out.println();
+
+        arvore.remover(50); // remove raiz com 2 filhos
+        System.out.print("Após remover 50: ");
+        arvore.inOrdem(arvore.raiz);
         System.out.println();
     }
 }
+
 
 class Node {
     int info;
